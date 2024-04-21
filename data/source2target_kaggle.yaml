@@ -3,7 +3,7 @@ path: /kaggle/input/data-object-detection  # dataset root dir
 train: images/train  # train images (relative to 'path') 128 images
 val:  images/test_occlusion  # val images (relative to 'path') 128 images
 test:  images/test_occlusion
-target: /kaggle/input/data-object-detection/images/train_real
+target: /kaggle/input/data-object-detection/images/train_occlusion
 # Classes
 nc: 1  # number of classes
 names: ['pallet'] # class names
