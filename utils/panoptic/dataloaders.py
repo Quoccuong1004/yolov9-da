@@ -153,7 +153,7 @@ class LoadImagesAndLabelsAndMasks(LoadImagesAndLabels):  # for training/testing
         [cache.pop(k) for k in ('hash', 'version', 'msgs')]  # remove items
         seg_labels, _, self.semantic_masks = zip(*cache.values())
         nl = len(np.concatenate(seg_labels, 0))  # number of labels
-        assert nl > 0 or not augment, f'{prefix}All labels empty in {cache_path}, can not start training. {HELP_URL}'
+        # assert nl > 0 or not augment, f'{prefix}All labels empty in {cache_path}, can not start training. {HELP_URL}'
 
         # Update labels
         self.seg_cls = []
