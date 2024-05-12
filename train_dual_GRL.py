@@ -323,7 +323,7 @@ def train(hyp, opt, device, callbacks):  # hyp is path/to/hyp.yaml or hyp dictio
                 loss_ori, loss_items = compute_loss(pred, targets.to(device)) #quoccuong
                 source_loss = DA_loss(source_pred_label, 0) #quoccuong
                 target_loss = DA_loss(target_pred_label, 1) #quoccuong
-                loss = loss_ori + 0.5 * source_loss + 0.5 * target_loss #quoccuong
+                loss = loss_ori + opt.alpha * source_loss + opt.alpha * target_loss #quoccuong
                 if RANK != -1:
                     loss *= WORLD_SIZE  # gradient averaged between devices in DDP mode
                 if opt.quad:
@@ -488,6 +488,7 @@ def parse_opt(known=False):
     parser.add_argument('--local_rank', type=int, default=-1, help='Automatic DDP Multi-GPU argument, do not modify')
     parser.add_argument('--min-items', type=int, default=0, help='Experimental')
     parser.add_argument('--close-mosaic', type=int, default=0, help='Experimental')
+    parser.add_argument('--alpha', type=float, default=0.5, help='Change the weighted of domain loss in the total loss')
 
     # Logger arguments
     parser.add_argument('--entity', default=None, help='Entity')
